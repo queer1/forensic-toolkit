@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="ForensicToolkitDB" Class="ForensicToolkitDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.\SQLEXPRESS;Initial Catalog=ForensicToolkitDB;Integrated Security=True;Pooling=False" SettingsObjectName="GrayHills.ForensicToolkit.VideoInspector.Properties.Settings" SettingsPropertyName="ForensicToolkitDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.[Case]" Member="Cases">
+    <Type Name="Case">
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Number" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="Case_VideoInspection" Member="VideoInspections" ThisKey="Key" OtherKey="CaseKey" Type="VideoInspection" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VideoInspection" Member="VideoInspections">
+    <Type Name="VideoInspection">
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CaseKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Started" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Ended" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="VideoInspection_Video" Member="Videos" ThisKey="Key" OtherKey="VideoInspectionKey" Type="Video" />
+      <Association Name="Case_VideoInspection" Member="Case" ThisKey="CaseKey" OtherKey="Key" Type="Case" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Frame" Member="Frames">
+    <Type Name="Frame">
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VideoKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time NOT NULL" CanBeNull="false" />
+      <Column Name="ImageFile" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX) NOT NULL" CanBeNull="false" UpdateCheck="Never" IsDelayLoaded="true" />
+      <Association Name="Video_Frame" Member="Video" ThisKey="VideoKey" OtherKey="Key" Type="Video" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Video" Member="Videos">
+    <Type Name="Video">
+      <Column Name="[Key]" Member="Key" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="VideoInspectionKey" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="OriginalPath" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="Filename" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="VideoFile" Type="System.Data.Linq.Binary" DbType="VarBinary(MAX)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Length" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Checksum" Type="System.String" DbType="Char(32)" CanBeNull="true" />
+      <Association Name="Video_Frame" Member="Frames" ThisKey="Key" OtherKey="VideoKey" Type="Frame" />
+      <Association Name="VideoInspection_Video" Member="VideoInspection" ThisKey="VideoInspectionKey" OtherKey="Key" Type="VideoInspection" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

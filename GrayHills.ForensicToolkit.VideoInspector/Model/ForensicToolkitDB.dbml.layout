@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="ForensicToolkitDB">
+  <DataContextMoniker Name="/ForensicToolkitDBDataContext" />
+  <nestedChildShapes>
+    <classShape Id="2002d445-8129-48ee-aa41-7a78ebb8197c" absoluteBounds="0.75, 1.125, 2, 1.5785953776041664">
+      <DataClassMoniker Name="/ForensicToolkitDBDataContext/Case" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dc4761a5-f6a9-4733-ba31-be6fc5ddae93" absoluteBounds="0.765, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="2911360c-ac8e-4c04-b167-b4af7d80afe1" absoluteBounds="3.5, 1.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ForensicToolkitDBDataContext/VideoInspection" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad943f9a-fcd2-4bfe-a1ca-9995f69811b7" absoluteBounds="3.515, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="c2a0b893-f8ba-4977-ae8f-5396f286bd32" absoluteBounds="0.75, 3.75, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/ForensicToolkitDBDataContext/Frame" />
+      <nestedChildShapes>
+        <elementListCompartment Id="aa2f60e6-a37d-434a-b513-8a1badecf8a8" absoluteBounds="0.76500000000000057, 4.21, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.91429768880208); (3.5 : 1.91429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForensicToolkitDBDataContext/Case/Case_VideoInspection" />
+      <nodes>
+        <classShapeMoniker Id="2002d445-8129-48ee-aa41-7a78ebb8197c" />
+        <classShapeMoniker Id="2911360c-ac8e-4c04-b167-b4af7d80afe1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6ba88878-bc10-4729-94f2-12f011c859dd" absoluteBounds="3.625, 4.125, 2, 2.1554996744791666">
+      <DataClassMoniker Name="/ForensicToolkitDBDataContext/Video" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ecb757c0-c7e4-4c1d-9b7c-fc42b41f20c8" absoluteBounds="3.64, 4.585, 1.9700000000000002, 1.5954996744791665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.625 : 4.72679768880208); (2.75 : 4.72679768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForensicToolkitDBDataContext/Video/Video_Frame" />
+      <nodes>
+        <classShapeMoniker Id="6ba88878-bc10-4729-94f2-12f011c859dd" />
+        <classShapeMoniker Id="c2a0b893-f8ba-4977-ae8f-5396f286bd32" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.5625 : 2.70359537760417); (4.5625 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/ForensicToolkitDBDataContext/VideoInspection/VideoInspection_Video" />
+      <nodes>
+        <classShapeMoniker Id="2911360c-ac8e-4c04-b167-b4af7d80afe1" />
+        <classShapeMoniker Id="6ba88878-bc10-4729-94f2-12f011c859dd" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
